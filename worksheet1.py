@@ -42,7 +42,7 @@ def main():
     myPop.printPopulation()
     fig, ax = plt.subplots()  # Create a figure containing a single axes.
     ax.plot(avgFitness)
-    plt.show()
+    plt.show()#show
 
 if __name__ == "__main__":
     main()
