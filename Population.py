@@ -1,7 +1,7 @@
 import random
 import math
 from Individual import Individual
-
+#commiting git 20 dec
 class Population:
 
     def __init__(self, populationSize, genesQuantity):

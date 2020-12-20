@@ -34,15 +34,15 @@ def main():
 
     for i in range(0, 100):
         myPop.tournamentPopulation()
-        myPop.crossoverPopulation()
-        myPop.mutatePopulation(2, 1)
+        #myPop.crossoverPopulation()
+        #myPop.mutatePopulation(50, 1)
 
         avgFitness.append(myPop.getPopulationFitness()/len(myPop.populationList))
 
     myPop.printPopulation()
     fig, ax = plt.subplots()  # Create a figure containing a single axes.
     ax.plot(avgFitness)
-    plt.show()
+    plt.show()#show
 
 if __name__ == "__main__":
     main()
