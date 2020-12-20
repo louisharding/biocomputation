@@ -34,8 +34,8 @@ def main():
 
     for i in range(0, 100):
         myPop.tournamentPopulation()
-        myPop.crossoverPopulation()
-        myPop.mutatePopulation(2, 1)
+        #myPop.crossoverPopulation()
+        #myPop.mutatePopulation(50, 1)
 
         avgFitness.append(myPop.getPopulationFitness()/len(myPop.populationList))
 

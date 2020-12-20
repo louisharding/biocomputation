@@ -30,7 +30,7 @@ class Individual:
         print("Fitness = ", self.getFitness(), end="")
 
     def mutateGenes(self, mutationProb, mutationMagnitudeMax):
-        tempGenes =[]
+        tempGenes = []
         for individualGene in self.genes:
             tempGenes.append(self.mutateGene(individualGene, mutationProb, mutationMagnitudeMax))
         self.genes = tempGenes
@@ -53,7 +53,7 @@ class Individual:
     def crossover(self, partner):
         crossoverPoint = random.randrange(0, len(self.genes))
         genes = [*self.genes[:crossoverPoint], *partner.genes[crossoverPoint:]]
-        #List Comprehension #genes = [y for x in [self.genes[:crossoverPoint], partner.genes[crossoverPoint:]] for y in x]
+
         child1 = Individual(len(self.genes))
         child1.genes = genes
 
