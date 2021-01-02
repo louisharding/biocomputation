@@ -1,54 +1,50 @@
 import random
 import math
 from Individual import Individual
-#commiting git 20 dec
+
+
+# committing git 20 dec
 class Population:
 
-    def __init__(self, populationSize, genesQuantity):
+    def __init__(self, population_size, genes_quantity):
         self.populationList = []
         self.populationFitness = 0
-        for each in range (0, populationSize):
-            self.populationList.append(Individual(genesQuantity))
+        for each in range(0, population_size):
+            self.populationList.append(Individual(genes_quantity))
 
-    def getPopulationFitness(self):
-        tempFitness = 0
+    def get_population_fitness(self):
+        temp_fitness = 0
         for individual in self.populationList:
-            tempFitness += individual.getFitness()
-        return tempFitness
+            temp_fitness += individual.get_fitness()
+        return temp_fitness
 
-    def  printPopulation(self):
-        # Print each indiviual of the population
+    def print_population(self):
+        # Print each individual of the population
         print("The population: ")
         for individual in self.populationList:
-            individual.printInfo()
+            individual.print_info()
 
-    #Tournament
-    def tournamentPopulation(self):
-        tempPopulation = []
+    # Tournament
+    def tournament_population(self):
+        temp_population = []
         for each in range(0, len(self.populationList)):
-            #pick random two individuals,
+            # pick two random individuals
             child1 = self.populationList[random.randint(0, len(self.populationList) - 1)]
             child2 = self.populationList[random.randint(0, len(self.populationList) - 1)]
 
-            if (child1.getFitness() < child2.getFitness()):
-                tempPopulation.append(child1)
+            if child1.get_fitness() < child2.get_fitness():
+                temp_population.append(child1)
             else:
-                tempPopulation.append(child2)
-        self.populationList = tempPopulation
+                temp_population.append(child2)
+        self.populationList = temp_population
 
-
-    #Crossover
-    def crossoverPopulation(self):
+    # Crossover
+    def crossover_population(self):
         for individual in self.populationList:
-            randomPartner = self.populationList[random.randint(0, len(self.populationList)-1)]
-            individual.crossover(randomPartner)
+            random_partner = self.populationList[random.randint(0, len(self.populationList) - 1)]
+            individual.crossover(random_partner)
 
-        pass
-    #Mutation
-    def mutatePopulation(self, mutationRate, mutationMagnitudeMax):
+    # Mutation
+    def mutate_population(self, mutation_rate, mutation_magnitude_max):
         for individual in self.populationList:
-            individual.mutateGenes(mutationRate, mutationMagnitudeMax)
-
-
-
-
+            individual.mutate_genes(mutation_rate, mutation_magnitude_max)
