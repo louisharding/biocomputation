@@ -28,6 +28,7 @@ class Individual:
         for each in range(0, genes_quantity):
             self.genes.append(round(random.random(), 2))
 
+
     def get_fitness(self):
         sigma_a = 0.0
         sigma_b = 0.0
@@ -41,7 +42,6 @@ class Individual:
     def get_fitness_old(self):
         def d(x):
             return x ** 2 - 10 * math.cos(2 * math.pi * x)
-
         return (len(self.genes) * 10) + sum([d(x) for x in self.genes])
 
     def print_info(self):

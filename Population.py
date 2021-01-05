@@ -3,7 +3,7 @@ import math
 from Individual import Individual
 
 
-# committing git 20 dec
+
 class Population:
 
     def __init__(self, population_size, genes_quantity):
@@ -17,6 +17,7 @@ class Population:
         for individual in self.populationList:
             temp_fitness += individual.get_fitness()
         return temp_fitness
+
 
     def print_population(self):
         # Print each individual of the population

@@ -21,25 +21,32 @@ def tournament(Population):
     return children
 
 
+
+
+
+
+
 def main():
-    # Creating a population:
-    myPop = Population(50, 10)
+    # make a population list comprising of individuals
+    pop = [Individual(10) for i in range(50)]
 
-    print("Original Population: ")
-    myPop.print_population()
+    for i in pop:
+        i.print_info()
 
-    avgFitness = []
 
-    for i in range(0, 100):
-        myPop.tournament_population()
-        myPop.mutate_population(5, 1)
-        #myPop.crossover_population()
-        avgFitness.append(myPop.get_population_fitness() / len(myPop.populationList))
-
-    myPop.print_population()
-    fig, ax = plt.subplots()  # Create a figure containing a single axis.
-    ax.plot(avgFitness)
-    plt.show()  # show
+    # myPop = Population(50, 10)
+    # myPop.print_population()
+    # avg_fitness = []
+    #
+    # for i in range(0, 100):
+    #     myPop.tournament_population()
+    #     myPop.mutate_population(5, 1)
+    #     myPop.crossover_population()
+    #     avg_fitness.append(myPop.get_population_fitness() / len(myPop.populationList))
+    #
+    # fig, ax = plt.subplots()
+    # ax.plot(avg_fitness)
+    # plt.show()
 
 
 if __name__ == "__main__":
