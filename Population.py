@@ -2,8 +2,6 @@ import random
 import math
 from Individual import Individual
 
-
-
 class Population:
 
     def __init__(self, population_size, genes_quantity):
@@ -18,7 +16,6 @@ class Population:
             temp_fitness += individual.get_fitness()
         return temp_fitness
 
-
     def print_population(self):
         # Print each individual of the population
         print("The population: ")
@@ -30,8 +27,8 @@ class Population:
         temp_population = []
         for each in range(0, len(self.populationList)):
             # pick two random individuals
-            child1 = self.populationList[random.randint(0, len(self.populationList) - 1)]
-            child2 = self.populationList[random.randint(0, len(self.populationList) - 1)]
+            child1 = random.choice(self.populationList)
+            child2 = random.choice(self.populationList)
 
             if child1.get_fitness() < child2.get_fitness():
                 temp_population.append(child1)
@@ -42,7 +39,7 @@ class Population:
     # Crossover
     def crossover_population(self):
         for individual in self.populationList:
-            random_partner = self.populationList[random.randint(0, len(self.populationList) - 1)]
+            random_partner = random.choice(self.populationList)
             individual.crossover(random_partner)
 
     # Mutation

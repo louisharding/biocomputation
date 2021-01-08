@@ -28,7 +28,6 @@ class Individual:
         for each in range(0, genes_quantity):
             self.genes.append(round(random.random(), 2))
 
-
     def get_fitness(self):
         sigma_a = 0.0
         sigma_b = 0.0
@@ -37,12 +36,6 @@ class Individual:
             sigma_b += math.cos(2.0 * math.pi * gene)
         n = len(self.genes)  # gene size
         return -20.0 * math.exp(-0.2 * math.sqrt(sigma_a / n)) - math.exp(sigma_b / n)
-
-    # Now with minimisation
-    def get_fitness_old(self):
-        def d(x):
-            return x ** 2 - 10 * math.cos(2 * math.pi * x)
-        return (len(self.genes) * 10) + sum([d(x) for x in self.genes])
 
     def print_info(self):
         print("\nGenes: ", end="")
@@ -55,15 +48,14 @@ class Individual:
             temp_genes.append(mutate_gene(individualGene, mutation_prob, mutation_magnitude_max))
         self.genes = temp_genes
 
-    # Pick random point in genes,
+    # Pick random point in self.genes,
     def crossover(self, partner):
-        crossover_point = random.randrange(0, len(self.genes))
+        crossover_point = random.randint(0, len(self.genes)-1)
         genes = [*self.genes[:crossover_point], *partner.genes[crossover_point:]]
-
         child1 = Individual(len(self.genes))
         child1.genes = genes
-
         genes = [*self.genes[crossover_point:], *partner.genes[:crossover_point]]
         child2 = Individual(len(self.genes))
         child2.genes = genes
+
         return child1, child2
