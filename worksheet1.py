@@ -24,7 +24,6 @@ def crossover(population):
     temp_pop = []
     for i in range(0, len(population), 2):
         temp_pop.extend(population[i].crossover(random.choice(population)))
-
     return temp_pop
 
 
@@ -36,13 +35,12 @@ def get_population_fitness(population):
 
 
 def main():
-    # make a population list comprising of individuals with a 10long genome
+    # make a population list comprising of individuals with a 10-long genome
     pop = []
     for _ in range(0, 50):
         pop.append(Individual(10))
 
-    for i in pop: i.print_info()
-    print("\n/////////////////////")
+
 
     avg_fitness = []
     for i in range(0, 50):
@@ -51,11 +49,10 @@ def main():
         # mutate
         for individual in pop: individual.mutate_genes
         # crossover
-        #pop = crossover(pop)
+        pop = crossover(pop)
         avg_fitness.append(get_population_fitness(pop))
 
 
-    for i in pop: i.print_info()
 
     fig, ax = plt.subplots()
     ax.plot(avg_fitness)
