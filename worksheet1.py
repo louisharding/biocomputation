@@ -2,7 +2,7 @@
 import random
 from Individual import Individual
 import matplotlib.pyplot as plt
-import numpy as np
+
 
 
 # Tournament selection
@@ -38,19 +38,19 @@ def main():
     # make a population list comprising of individuals with a 10-long genome
     pop = []
     for _ in range(0, 50):
-        pop.append(Individual(10))
+        pop.append(Individual())
 
 
 
     avg_fitness = []
-    for i in range(0, 50):
+    for i in range(0, 300):
         # tournament
         pop = tournament(pop)
         # mutate
-        for individual in pop: individual.mutate_genes
+        pop = [x.mutate_genes(10, 4) for x in pop]
         # crossover
         pop = crossover(pop)
-        avg_fitness.append(get_population_fitness(pop))
+        avg_fitness.append(get_population_fitness(pop)/len(pop))
 
 
 

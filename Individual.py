@@ -1,32 +1,15 @@
 import random
 import math
 
-
-def mutate_gene(gene, mutation_prob, mutation_magnitude_max):
-    # decide how much the gene will mutate by
-    mutation_magnitude = random.uniform(0, mutation_magnitude_max)
-    # pick random number between 0 to 100
-    if random.randint(0, 100) < mutation_prob:
-        # mutate the gene
-        if random.randint(1, 2) % 2 == 0:
-            if gene + mutation_magnitude > 32:
-                gene = 32
-            else:
-                gene += mutation_magnitude
-        else:
-            if gene - mutation_magnitude < -32:
-                gene = -32
-            else:
-                gene -= mutation_magnitude
-    return gene
+N = 50
 
 
 class Individual:
-    def __init__(self, genes_quantity):
-        self.genes = []
-        self.fitness = 0
-        for each in range(0, genes_quantity):
-            self.genes.append(round(random.random(), 2))
+    def __init__(self, genes=None):
+        if genes is None:
+            self.genes = [random.uniform(-32, 32) for i in range(N)]
+        else:
+            self.genes = genes
 
     def get_fitness(self):
         sigma_a = 0.0
@@ -43,10 +26,20 @@ class Individual:
         print("Fitness = ", self.get_fitness(), end="")
 
     def mutate_genes(self, mutation_prob, mutation_magnitude_max):
+        m = random.uniform(0, mutation_magnitude_max)
         temp_genes = []
-        for individualGene in self.genes:
-            temp_genes.append(mutate_gene(individualGene, mutation_prob, mutation_magnitude_max))
-        self.genes = temp_genes
+        for gene in self.genes:
+            if random.randint(0, 100) < mutation_prob:
+                if random.randint(1, 2) % 2 == 0:
+                    temp_genes.append(min(gene + m, 32))
+                else:
+                    temp_genes.append(max(gene - m, -32))
+            else:
+                temp_genes.append(gene)
+        i = Individual(10)
+        i.genes = temp_genes
+        return Individual(temp_genes)
+
 
     # Pick random point in self.genes,
     def crossover(self, partner):
